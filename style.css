@@ -751,9 +751,7 @@ body {
     .card-mundo, .card-mundo:nth-child(4), .card-mundo:nth-child(5) {
         grid-column: span 1;
     }
-    .img-flotante {
-        display: none;
-    }
+   
 }
 
 @keyframes flotar {

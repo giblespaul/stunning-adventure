@@ -7,6 +7,10 @@
     --dorado: #FFD700;
     --ui-azul-sombra: #2A486A;
     --transition-pop: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        --azul-fondo: #4089c7;
+    --rojo-principal: #b30000;
+    --amarillo-texto: #f2c94c;
+    --sombra-badge: #004a8d;
 }
 
 /* --- Configuración Base --- */
@@ -622,4 +626,142 @@ body {
     .chefs-title-img {
         max-width: 320px;
     }
+}
+
+
+
+
+
+
+
+
+
+.explora-reino {
+    background-color: var(--azul-fondo);
+    padding: 40px 20px;
+    font-family: 'Arial Black', sans-serif;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Encabezado */
+.header-reino h1 {
+    font-size: 3rem;
+    color: var(--rojo-principal);
+    margin: 0;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.header-reino p {
+    font-size: 1.2rem;
+    color: var(--rojo-principal);
+    font-style: italic;
+    max-width: 600px;
+    margin: 10px auto 40px;
+}
+
+.img-flotante {
+    position: absolute;
+    top: 20px;
+    right: 5%;
+    width: 150px;
+}
+
+/* Grid de Mundos (3 arriba, 2 abajo) */
+.grid-mundos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 columnas para centrar la fila de 2 */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card-mundo {
+    grid-column: span 2; /* Cada tarjeta ocupa 2 de las 6 columnas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ajuste para que los últimos 2 mundos queden centrados */
+.card-mundo:nth-child(4) { grid-column: 2 / span 2; }
+.card-mundo:nth-child(5) { grid-column: 4 / span 2; }
+
+.label-mundo {
+    color: var(--amarillo-texto);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* El badge rojo con efecto de profundidad */
+.badge-rojo {
+    background-color: var(--rojo-principal);
+    padding: 5px 20px;
+    font-size: 1.2rem;
+    box-shadow: 4px 4px 0px var(--sombra-badge);
+    margin-bottom: 15px;
+    transform: skew(-5deg); /* Ligera inclinación para el estilo cartoon */
+}
+
+.frame-mapa {
+    border: 4px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.frame-mapa img {
+    width: 100%;
+    display: block;
+}
+
+.frame-mapa:hover {
+    transform: scale(1.05);
+}
+
+/* Flechas inferiores */
+.nav-inferior {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.flecha {
+    width: 0; 
+    height: 0; 
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+}
+
+.flecha-izq {
+    border-right: 40px solid var(--rojo-principal);
+}
+
+.flecha-der {
+    border-left: 40px solid var(--rojo-principal);
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .grid-mundos {
+        grid-template-columns: 1fr;
+    }
+    .card-mundo, .card-mundo:nth-child(4), .card-mundo:nth-child(5) {
+        grid-column: span 1;
+    }
+    .img-flotante {
+        display: none;
+    }
+}
+
+@keyframes flotar {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.img-flotante {
+    animation: flotar 3s ease-in-out infinite;
 }

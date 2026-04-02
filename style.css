@@ -1,0 +1,625 @@
+/* --- Variables de Marca --- */
+:root {
+    --azul-oscuro: #004D85;
+    --azul-claro: #A3D9F8;
+    --rojo-principal: #C0392B;
+    --rojo-oscuro: #8E0000;
+    --dorado: #FFD700;
+    --ui-azul-sombra: #2A486A;
+    --transition-pop: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- Configuración Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif; /* Fuente más amigable/cartoon */
+    background-color: var(--azul-claro);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Navbar (Respetando JS) --- */
+.navbar {
+    background-color: var(--azul-oscuro);
+    padding: 1rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 0px rgba(0,0,0,0.15); /* Sombra sólida */
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-text {
+    color: #FFFFFF;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0px var(--rojo-principal); 
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-menu li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    transition: all 0.3s var(--transition-pop);
+    display: inline-block;
+}
+
+.nav-menu li a:hover {
+    color: var(--dorado);
+    transform: scale(1.15) rotate(-2deg);
+}
+
+/* --- Hero Section --- */
+.hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.main-logo img {
+    width: 100%;
+    max-width: 450px;
+    filter: drop-shadow(8px 8px 0px rgba(0,0,0,0.1));
+}
+
+.btn-cook {
+    display: inline-block;
+    transition: transform 0.3s var(--transition-pop);
+}
+
+.btn-cook img {
+    width: 100%;
+    max-width: 280px;
+    cursor: pointer;
+}
+
+/* Estado Hover: Cuando el mouse está encima */
+.btn-cook:hover {
+    /* Resalta: se agranda un 10%, sube un poco y rota 3 grados */
+    transform: scale(1.1) translateY(-10px) rotate(3deg);
+    /* Brillo y sombra más pronunciada (efecto sticker) */
+    filter: brightness(1.15) drop-shadow(8px 8px 0px rgba(0,0,0,0.2));
+}
+
+/* Estado Active: Cuando se hace clic (opcional, para feedback) */
+
+.char-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.05));
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* --- Sección Lore (Efecto UI de Juego) --- */
+.lore-section {
+
+    position: relative;
+    background-color: #57B3E4; /* Azul cielo de fondo */
+    background-image: url('pagina interna 1/Mesa13.png');
+    background-size: cover;
+    background-position: center;
+    padding: 120px 5% 0 5%;
+    display: flex;
+    flex-direction: column;
+    min-height: 900px;
+    border-top: 10px solid var(--azul-oscuro);
+    /* Aseguramos que este contenedor sea el contexto de posicionamiento */
+    overflow: hidden; 
+}
+
+/* Banderines */
+.lore-flags {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10%;
+}
+
+.flag-red, .flag-blue {
+    width: 80px;
+    height: 120px;
+    filter: drop-shadow(5px 5px 0px rgba(0,0,0,0.2));
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 85%, 0 100%);
+}
+.flag-red { background-color: var(--rojo-principal); }
+.flag-blue { background-color: var(--azul-oscuro); }
+
+.lore-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    z-index: 2;
+}
+
+/* Animación de la Bestia y sus Utensilios */
+.beast-container {
+    flex: 1.2;
+    position: relative; /* Necesario para posicionar los utensilios */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* CAPA BAJA: Detrás de la mesa */
+    z-index: 1; 
+}
+
+/* Estilo base para ambos utensilios */
+.beast-tool {
+    position: absolute;
+    /* CAPA MEDIA: Sobre la Bestia, pero detrás de la mesa */
+    z-index: 2; 
+    pointer-events: none; /* Para que no interfieran con clics */
+    filter: drop-shadow(8px 8px 0px rgba(0,0,0,0.1));
+    /* Sincronizamos con la animación 'breathe' de la Bestia */
+    animation: breathe-tools 4s ease-in-out infinite;
+}
+
+/* ... (tool-left y tool-right se mantienen igual) ... */
+
+.beast-img {
+    width: 100%;
+    max-width: 500px;
+    /* CAPA BASE de la Bestia */
+    z-index: 1; 
+    /* !!! CAMBIO: Bajamos a la Bestia para que parezca detrás !!! */
+    transform: translateY(100px); /* Ajusta este valor si necesitas que baje más o menos */
+    filter: drop-shadow(10px 10px 0px rgba(0,0,0,0.1));
+    /* Mantenemos la animación de respiración */
+    animation: breathe 4s ease-in-out infinite;
+}
+
+.tool-left { width: 25%; left: -10%; top: 40%; --rot-base: -15deg; --rot-inc: -25deg; }
+.tool-right { width: 22%; right: -5%; top: 45%; --rot-base: 15deg; --rot-inc: 25deg; }
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.03) translateY(-10px); }
+}
+
+@keyframes breathe-tools {
+    0%, 100% { transform: rotate(var(--rot-base)) translateY(0); }
+    50% { transform: rotate(var(--rot-inc)) translateY(-15px); }
+}
+
+/* Tarjeta de Diálogo */
+.lore-card {
+    flex: 1;
+    background: white;
+    border: 10px solid var(--rojo-principal);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 15px 15px 0px var(--ui-azul-sombra);
+}
+
+.story-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #333;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+.lore-footer {
+    font-weight: 900;
+    color: var(--rojo-principal);
+    text-transform: uppercase;
+    border-top: 3px solid #eee;
+    padding-top: 15px;
+}
+
+.kitchen-ui {
+    margin-top: auto;
+    width: 100%;
+    /* !!! CAPA ALTA: Por delante de la Bestia !!! */
+    z-index: 10; 
+}
+
+/* Superficie de arriba (Celeste claro) */
+.counter-top {
+    height: 40px;
+    background-color: #E1F5FE;
+    border-top: 4px solid #000;
+    border-bottom: 4px solid #000;
+    /* Un pequeño drop-shadow hacia arriba ayuda al efecto de superposición */
+    box-shadow: 0 -10px 15px rgba(0,0,0,0.1);
+}
+
+.counter-front {
+ 
+    height: 160px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-items {
+    display: flex;
+    gap: 50px;
+}
+
+.counter-items img {
+    height: 90px;
+    filter: drop-shadow(6px 6px 0px rgba(0,0,0,0.1));
+    transition: transform 0.3s var(--transition-pop);
+}
+
+.counter-items img:hover { transform: scale(1.2) translateY(-15px); }
+
+/* --- Controles e Interacción --- */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    background: var(--azul-oscuro);
+}
+
+.arrow-left img, .arrow-right img {
+    width: 100px;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-pop);
+}
+
+.arrow-left:hover img { transform: translateX(-10px) scale(1.1); }
+.arrow-right:hover img { transform: translateX(10px) scale(1.1); }
+
+/* --- Mobile / Responsive --- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        width: 30px;
+        height: 4px;
+        background: white;
+        border-radius: 2px;
+    }
+
+    .nav-menu {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        background: var(--azul-oscuro);
+        flex-direction: column;
+        padding-top: 100px;
+        transition: 0.4s var(--transition-pop);
+    }
+
+    .nav-menu.active { right: 0; }
+
+    .hero-grid, .lore-container {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .counter-front { border: none; height: 100px; }
+}
+
+/* --- Animaciones de Entrada (Para JS) --- */
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8) translateY(40px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-in {
+    opacity: 0; /* Empieza invisible hasta que JS añade la clase */
+    animation: popIn 0.7s var(--transition-pop) forwards;
+}
+
+
+
+
+
+
+/* --- Sección de Servicios --- */
+.services-section {
+    position: relative; /* Esencial para el posicionamiento del borde absoluto */
+
+    background-image:url('pagina\ interna\ 2/Mesa27.png');
+    background-size: 30px 30px;
+    /* Aumenté padding-top de 100px a 150px para compensar la altura del borde */
+    padding: 150px 5% 100px 5%; 
+    text-align: center;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; /* Asegura que nada sobresalga */
+}
+
+/* !!! NUEVA REGLA: Borde Superior de Banderines !!! */
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Altura estimada del borde de banderines */
+    /* Usaré la ruta genérica de las imágenes anteriores para el archivo image_92.png */
+    background-image: url('pagina\ interna\ 2/Mesa28.png'); 
+    background-repeat: repeat-x; /* Se repite solo horizontalmente */
+    background-position: center top; /* Pegado a la parte superior */
+    background-size: contain; /* Ajusta la imagen sin recortarla */
+    z-index: 10; /* Asegura que esté por encima de cualquier otro elemento de fondo */
+}
+
+/* !!! NUEVA REGLA: Borde Inferior !!! */
+.services-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Lo anclamos a la parte de abajo */
+    left: 0;
+    width: 100%;
+    height: 60px; /* Ajusta esta altura dependiendo de qué tan grueso quieras el borde */
+    background-image: url('pagina interna 2/Mesa30.png'); 
+    background-repeat: repeat-x; /* Para que se repita de lado a lado */
+    background-position: center bottom; /* Pegado bien al fondo */
+    background-size: contain; /* Escala la imagen sin recortarla */
+    z-index: 10; /* Se mantiene por encima del fondo azul */
+}
+
+.services-title {
+    color: #C0392B; /* Rojo principal */
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-family: 'Arial Black', sans-serif;
+    /* Efecto de borde blanco grueso como en el juego */
+    text-shadow: 
+        -3px -3px 0 #fff,  
+         3px -3px 0 #fff,
+        -3px  3px 0 #fff,
+         3px  3px 0 #fff,
+         6px  6px 0px rgba(0,0,0,0.2);
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Tarjeta Estilo Sticker / Botón */
+.service-card {
+    background: white;
+    border: 10px solid #000; /* Borde muy grueso */
+    border-radius: 20px;
+    padding: 20px;
+    aspect-ratio: 1 / 1; /* Hace que sean cuadradas como en la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--transition-pop);
+    box-shadow: 15px 15px 0px #000; /* Sombra negra sólida */
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* Variantes de Color */
+.service-card.red-variant {
+    border-color: #C0392B;
+    box-shadow: 15px 15px 0px #8E0000;
+}
+
+/* --- Efectos de Interacción --- */
+.service-card:hover {
+    transform: translateY(-20px) rotate(-2deg);
+    box-shadow: 25px 25px 0px rgba(0,0,0,0.3);
+   
+}
+
+.card-img:hover  {
+    transform: scale(1.1);
+    animation: wobble 0.5s ease-in-out infinite;
+}
+
+@keyframes wobble {
+    0%, 100% { transform: scale(1.1) rotate(0); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+}
+
+/* --- Ajuste para Móviles --- */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+    }
+    .services-title { font-size: 1.8rem; }
+}
+
+
+
+/* --- Sección de Nuestros Chefs --- */
+.chefs-section {
+    position: relative;
+    /* Fondo de rayas diagonales */
+    background-image: url('pagina interna 3/Mesa de trabajo 35.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Aumentamos el padding lateral para que los bordes no tapen a los chefs */
+    padding: 100px 10% 150px 10%; 
+    text-align: center;
+    overflow: hidden;
+}
+
+/* --- Bordes Laterales --- */
+.chefs-section::before,
+.chefs-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px; /* Ajusta el ancho según tu imagen */
+    background-repeat: repeat-y;
+    background-size: contain;
+    z-index: 5;
+}
+
+/* Borde Izquierdo */
+.chefs-section::before {
+    left: 0;
+    /* Reemplaza con el nombre de tu archivo de borde izquierdo (ej. image_72.png) */
+    background-image: url('pagina interna 3/Mesa44.png'); 
+}
+
+/* Borde Derecho */
+.chefs-section::after {
+    right: 0;
+    /* Reemplaza con el nombre de tu archivo de borde derecho (ej. image_73.png) */
+    background-image: url('pagina interna 3/Mesa43_1.png'); 
+}
+
+.chefs-title-img {
+    max-width: 500px;
+    width: 90%;
+    margin-bottom: 60px;
+    transition: transform 0.3s var(--transition-pop);
+    position: relative;
+    z-index: 10; /* Por encima de los bordes si llegaran a tocarse */
+}
+
+.chefs-title-img:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+.chefs-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjeta / Marco del Chef */
+.chef-card {
+    width: 290px; 
+    height: 380px;
+    background-size: 100% 100%; /* Obliga al marco a llenar el contenedor exacto */
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    transition: all 0.3s var(--transition-pop);
+    cursor: pointer;
+    /* Este padding empuja al personaje hacia arriba para que encaje en el marco */
+    padding-bottom: 35px; 
+}
+
+
+/* La imagen del personaje */
+.chef-character {
+    width: 105%; /* Más de 100% para que sobresalgan un poco de los lados/arriba */
+    height: auto;
+    transition: all 0.4s var(--transition-pop);
+    transform-origin: bottom center; /* Hace que crezcan desde los pies al hacer hover */
+}
+
+/* Ajuste específico para el Chef Clásico si es muy pequeño/grande */
+.chef-character.classic-chef {
+    width: 95%; 
+}
+
+/* --- Efectos Interactivos (Hover) --- */
+.chef-card:hover {
+    transform: translateY(-20px);
+    filter: drop-shadow(15px 15px 0px rgba(0,0,0,0.2));
+}
+
+.chef-card:hover .chef-character {
+    transform: scale(1.08); /* Crece ligeramente hacia arriba y a los lados */
+}
+
+/* --- Responsivo --- */
+@media (max-width: 768px) {
+
+    .chefs-section {
+        padding: 80px 15% 100px 15%;
+    }
+    .chefs-section::before,
+    .chefs-section::after {
+        width: 40px; /* Bordes más delgados en pantallas pequeñas */
+    }
+    .chefs-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .chef-card {
+        width: 250px;
+        height: 330px;
+        padding-bottom: 30px;
+    }
+    
+    .chefs-title-img {
+        max-width: 320px;
+    }
+}

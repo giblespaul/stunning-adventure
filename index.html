@@ -24,8 +24,15 @@
             <li><a href="#">TOUR</a></li>
             <li><a href="#">EXTREMO</a></li>
             <li><a href="#">CRÍTICA</a></li>
-            <li><a href="#">INFORMACIÓN</a></li>
-            <li class="nav-arrow">▼</li>
+          <li class="dropdown">
+                <a href="#">Información ▼</a>
+                <ul class="submenu">
+                    <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                    <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                    <li><a href="https://discord.com" target="_blank">Discord</a></li>
+                </ul>
+        </li>
+            
         </ul>
 
         <div class="menu-toggle" id="mobile-menu">
@@ -95,9 +102,30 @@
 
     <div class="kitchen-ui">
          <div class="counter-front">    <div class="counter-items">
-                <img src="pagina interna 1/Mesa de trabajo 14.png" alt="Cuchillo">
-                <img src="pagina interna 1/Mesa de trabajo 15.png" alt="Olla">
-                <img src="pagina interna 1/Mesa de trabajo 16.png" alt="Ingredientes">
+              <div class="knife-container">
+                <img src="pagina interna 1/Mesa de trabajo 14.png" alt="Cuchillo" class="knife-icon">
+                
+                <div class="knife-message">
+                    <strong>¡La rapidez es clave!</strong><br>
+                    Pica los ingredientes antes que la cocina se mueva.
+                </div>
+            </div>
+                        <div class="pot-container">
+                <img src="pagina interna 1/Mesa de trabajo 15.png" alt="Olla" class="pot-icon">
+                
+                <div class="pot-message">
+                    <strong>¡Controla el fuego!</strong><br>
+                    Un segundo de distracción y tu cocina terminará en llamas.
+                </div>
+            </div>
+            <div class="dishes-container">
+    <img src="pagina interna 1/Mesa de trabajo 16.png" alt="Platos" class="dishes-icon">
+    
+    <div class="dishes-message">
+        <strong>¡Organiza tu equipo!</strong><br>
+        Uno pica, otro cocina y todos lavan. Sin platos no hay servicio.
+    </div>
+</div> 
             </div>
         </div>
     </div>
@@ -142,10 +170,12 @@
             <img src="pagina interna 3/Mesa de trabajo 43.png" alt="Chef Lentes" class="chef-character">
         </div>
     </div>
-    <div>
-        <img src="pagina interna 3/Mesa de trabajo 38.png" alt="">
-         <img src="pagina interna 3/Mesa de trabajo 39.png" alt="" width="70%">
+    <div class="comment-section">
+    <h2 class="comment-label">Escribe<br>Tu Reseña!</h2>
+    <div class="comment-input-box">
+      <input type="text" placeholder="Escribe aquí..." class="comment-input">
     </div>
+  </div>
 </section>
 <section class="explora-reino">
     <header class="header-reino">
@@ -202,6 +232,39 @@
         <div class="flecha flecha-izq"></div>
         <div class="flecha flecha-der"></div>
     </div>
+</section>
+<section class="academia-chefs-section">
+  <div class="flag flag-blue left-flag"></div>
+  <div class="flag flag-red left-flag-2"></div>
+  <div class="flag flag-red right-flag"></div>
+  <div class="flag flag-blue right-flag-2"></div>
+
+  <h1 class="academia-title">ACADEMIA DE CHEFS!</h1>
+
+<div class="carousel-wrapper">
+    <button class="carousel-control prev" id="prevChef">❮</button>
+    
+    <div class="cards-container-1" id="chefSlider">
+        <img src="pagina interna 5/Mesa de trabajo 67_1.png" alt="¡El Rey Cebolla!" class="chef-card">
+        <img src="pagina interna 5/Mesa de trabajo 68.png" alt="¡Kevin!" class="chef-card">
+        <img src="pagina interna 5/Mesa de trabajo 69.png" alt="¡Chef Mapache!" class="chef-card">
+        <img src="pagina interna 5/Mesa de trabajo 71.png" alt="¡Chef de Coletas!" class="chef-card">
+        <img src="pagina interna 5/Mesa de trabajo 72.png" alt="¡Chef de Gorro Alto!" class="chef-card">
+    </div>
+
+    <button class="carousel-control next" id="nextChef">❯</button>
+</div>
+
+  <div class="description-text">
+    <p>Estos cinco personajes son el corazón del juego. Los demás: <em>el unicornio, el dinosaurio, el robot</em> y otros son más bien aspectos o personajes estéticos que puedes elegir para diferenciar de tus amigos mientras corren por la cocina.</p>
+  </div>
+
+  <div class="comment-section">
+    <h2 class="comment-label">¡COMENTA<br>TU FAVORITO!</h2>
+    <div class="comment-input-box">
+      <input type="text" placeholder="Escribe aquí..." class="comment-input">
+    </div>
+  </div>
 </section>
 <script src="script.js"></script>
 <script src="efecto.js"></script>

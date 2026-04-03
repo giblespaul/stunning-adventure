@@ -20,4 +20,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const elementosAnimar = document.querySelectorAll(".header-reino, .card-mundo");
     
     elementosAnimar.forEach(el => observer.observe(el));
+
+
+    const slider = document.getElementById('chefSlider');
+    const prevBtn = document.getElementById('prevChef');
+    const nextBtn = document.getElementById('nextChef');
+
+    nextBtn.addEventListener('click', () => {
+        // Desplaza el ancho de una tarjeta + el gap
+        const scrollAmount = slider.clientWidth / (window.innerWidth > 768 ? 3 : 1);
+        slider.scrollLeft += scrollAmount;
+    });
+
+    prevBtn.addEventListener('click', () => {
+        const scrollAmount = slider.clientWidth / (window.innerWidth > 768 ? 3 : 1);
+        slider.scrollLeft -= scrollAmount;
+    });
 });
